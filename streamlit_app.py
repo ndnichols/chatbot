@@ -139,57 +139,16 @@ else:
                 # Create an OpenAI client.
                 client = OpenAI(api_key=openai_api_key)
                 first_draft = generateFirstDraft(client)
-                st.write('# First Draft')
-                st.write(first_draft)
+            with st.expander("First Draft", expanded=False):
+                st.markdown(first_draft)
+                # st.write('# First Draft')
+                # st.write(first_draft)
             with st.spinner('Getting feedback...'):
                 feedback = getFeedback(client)
-                st.write('# Editorial Feedback')
-                st.write(feedback)
+            with st.expander("Editorial Feedback", expanded=False):
+                st.markdown(feedback)
+                # st.write('# Editorial Feedback')
+                # st.write(feedback)
             with st.spinner('Generating final draft...'):
                 final_draft = generateFinalDraft(client)
-                st.write('# Final Draft')
-                st.write(final_draft)
-
-
-
-
-
-# Now you have the full response in response_text
-
-    # with st.chat_message("assistant"):
-        # response = st.write_stream(stream)
-        # st.write(response)
-    #     st.session_state.messages.append({"role": "assistant", "content": response})
-
-
-    #     # Stream the response to the chat using `st.write_stream`, then store it in 
-    #     # session state.
-    #     with st.chat_message("assistant"):
-    #         response = st.write_stream(stream)
-    #     st.session_state.messages.append({"role": "assistant", "content": response})
-
-
-
-
-    # if prompt := st.chat_input("What is up?"):
-
-    #     # Store and display the current prompt.
-    #     st.session_state.messages.append({"role": "user", "content": prompt})
-    #     with st.chat_message("user"):
-    #         st.markdown(prompt)
-
-    #     # Generate a response using the OpenAI API.
-    #     stream = client.chat.completions.create(
-    #         model="gpt-4o-mini",
-    #         messages=[
-    #             {"role": m["role"], "content": m["content"]}
-    #             for m in st.session_state.messages
-    #         ],
-    #         stream=True,
-    #     )
-
-    #     # Stream the response to the chat using `st.write_stream`, then store it in 
-    #     # session state.
-    #     with st.chat_message("assistant"):
-    #         response = st.write_stream(stream)
-    #     st.session_state.messages.append({"role": "assistant", "content": response})
+            st.write(final_draft)
